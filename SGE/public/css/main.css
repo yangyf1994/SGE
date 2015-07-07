@@ -535,7 +535,8 @@ input.search-form:hover {
 
 #welcome-blurb {
   background: #f2f2f2;
-  padding-bottom: 40px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 #welcome-blurb #welcome{
