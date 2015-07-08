@@ -54,3 +54,10 @@ block content
     script(src="js/jquery.isotope.min.js")
     script(src="js/main.js")
     script(src="js/wow.min.js")
+
+    script.
+      $(window).load(function() {
+      $("#announcements").addClass('active');
+      $('#home').removeClass('active');
+      });
+
