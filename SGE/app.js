@@ -27,7 +27,7 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
-app.use(paginate.middleware(3, 50));
+app.use(paginate.middleware(5, 50));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

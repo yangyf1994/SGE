@@ -2,7 +2,12 @@ var Article = require('../models/articles');
 
 exports.announcement = function (req,res,next) {
 
-Article.paginate({},{ page: req.query.page, limit: req.query.limit },
+Article.paginate({},
+{
+	page: req.query.page,
+  limit: req.query.limit,
+  sortBy:{create_date:-1}
+},
 	function(err, articles, pageCount, itemCount) {
 
 		if(err) return next(err);

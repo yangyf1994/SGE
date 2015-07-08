@@ -3,54 +3,42 @@ extends layout
 block content
     section#blog.container
       .center
-        h2 Blogs
-        p.lead Pellentesque habitant morbi tristique senectus et netus et malesuada
+        h2 Announcements
       .blog
         .row
           .col-md-8
-            .blog-item
-              .row
-                .col-xs-12.col-sm-2.text-center
-                  .entry-meta
-                    span#publish_date 07  NOV
-                    span
-                      i.fa.fa-user
-                      a(href="#") John Doe
-                    span
-                      i.fa.fa-comment
-                      a(href="blog-item.html#comments") 2 Comments
-                    span
-                      i.fa.fa-heart
-                      a(href="#") 56 Likes
-                .col-xs-12.col-sm-10.blog-content
-                  h2
-                    a(href="blog-item.html") Consequat bibendum quam liquam viverra
-                  h3
-                    | Curabitur quis libero leo, pharetra mattis eros. Praesent consequat libero eget dolor convallis vel rhoncus magna scelerisque. Donec nisl ante, elementum eget posuere a, consectetur a metus. Proin a adipiscing sapien. Suspendisse vehicula porta lectus vel semper. Nullam sapien elit, lacinia eu tristique non.posuere at mi. Morbi at turpis id urna ullamcorper ullamcorper.
-                  a.btn.btn-primary.readmore(href="blog-item.html")
-                    | Read More
-                    i.fa.fa-angle-right
-            // /.blog-item
-            ul.pagination.pagination-lg
-              li
-                a(href="#")
-                  i.fa.fa-long-arrow-left
-                  | Previous Page
-              li.active
-                a(href="#") 1
-              li
-                a(href="#") 2
-              li
-                a(href="#") 3
-              li
-                a(href="#") 4
-              li
-                a(href="#") 5
-              li
-                a(href="#")
-                  | Next Page
-                  i.fa.fa-long-arrow-right
-            // /.pagination
+            each article,index in articles
+              .blog-item
+                .row
+                  .col-xs-12.col-sm-2.text-center
+                    .entry-meta
+                      span#publish_date=article.create_date
+                      span
+                        i.fa.fa-user
+                        a(href="#") John Doe
+                  .col-xs-12.col-sm-10.blog-content
+                    h2
+                      a(href="#")=article.title
+                    h3=article.text
+              // /.blog-item
+            if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
+              ul.pagination.pagination-lg
+               if(paginate.hasPreviousPages)
+                  li
+                    a(href=paginate.href(true))
+                      i.fa.fa-long-arrow-left
+                      | Previous Page
+               -for(var i=0;i<pageCount;++i)
+                -var ref = {page:i+1}
+                  li
+                    a(href=paginate.href(ref))= (i+1)
+
+               if(paginate.hasNextPages(pageCount))
+                  li
+                    a(href=paginate.href())
+                      | Next Page
+                      i.fa.fa-long-arrow-right
+              // /.pagination
           // /.col-md-8
           aside.col-md-4
             .widget.search
