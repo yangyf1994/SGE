@@ -1,6 +1,7 @@
 var Article = require('../models/articles');
 
 exports.announcement = function (req,res,next) {
+
 Article.paginate({},{ page: req.query.page, limit: req.query.limit },
 	function(err, articles, pageCount, itemCount) {
 
@@ -8,8 +9,12 @@ Article.paginate({},{ page: req.query.page, limit: req.query.limit },
 
 		console.log('pageCount= '+pageCount);
 		console.log('itemCount= '+itemCount);
-
-		res.render('announcements',{articles: articles});
+		console.log(articles);
+		res.render('announcements',{
+			articles: articles,
+			pageCount: pageCount,
+			itemCount: itemCount
+		});
 	});
 
 };
