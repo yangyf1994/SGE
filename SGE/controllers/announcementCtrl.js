@@ -1,7 +1,6 @@
 var Article = require('../models/articles');
 
 exports.announcement = function (req,res,next) {
-
 Article.paginate({},{ page: req.query.page, limit: req.query.limit },
 	function(err, articles, pageCount, itemCount) {
 
@@ -15,40 +14,44 @@ Article.paginate({},{ page: req.query.page, limit: req.query.limit },
 
 };
 
-
-exports.deleteArticle = function (req,res,next) {
-	console.log('im fukcing here');
-	next();
-	/*
-	if(!req.params.id) return next(new Error('No article id'));
-	Article.remove({
-		_id:req.params.id
-	},function (err) {
-		if(err) return res.send(err);
-		res.json({message:'article deleted'});
-	});
-*/
-};
 exports.listArticle = function (req,res,next) {
 	Article.find({},null,{sort:{id:-1}},function (err,articles) {
 			if(err) return next(err);
-			res.json(articles);
+			res.send(articles);
 	});
 };
 
 
-exports.postArticle = function (req,res,next) {
-	if(!req.body.title || !req.body.text || !req.body.created_by)
-			res.json({message:"Please fill out all the required fields"});
-	var article = {
-		title: req.body.title,
-		text: req.body.text,
-		published: false,
-		created_by: req.body.created_by
-	};
+exports.postArticle = function (req,res) {
 
-	Article.create(article,function (err,articleRes) {
-		if(err) return next(err);
-		res.json({message:"Article added. Wait for admin to approve"});
+	//if(!req.body.title || !req.body.created_by ||!req.body.text)
+	//		res.json({message:"Please fill out all the required fields"});
+
+	var article = new Article();
+	article.title = req.body.title;
+	article.text = req.body.text;
+ 	article.published = false;
+  article.created_by = req.body.created_by;
+
+ 	article.save(function (err) {
+ 		if(err)
+ 		{
+ 			res.send(err);
+ 			return;
+ 		}
+ 		res.send({success:"article added"});
+ 	});
+};
+
+exports.deleteArticle = function (req,res,next) {
+
+	if(!req.params._id) return next(new Error('Id not provided'));
+	Article.remove({
+		_id:req.params._id
+	},
+	function (err) {
+		if(err) res.send(err);
+		res.send({message:'article removed'});
 	});
+
 };

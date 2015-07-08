@@ -8,14 +8,14 @@ var http = require('http');
 var paginate = require('express-paginate');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
-// keep this before all routes that will use pagination
 
 var app = express();
-var announcementCtrl = require('./controllers/announcementCtrl');
-
 //mongodb
 var dbURL = process.env.MONGOHQ_URL || 'mongodb://@localhost:27017/SGE';
 var db = mongoose.connect(dbURL,{safe:true});
+//controller
+var announcementCtrl = require('./controllers/announcementCtrl');
+
 
 app.set('port',process.env.PORT||3000);
 
@@ -44,8 +44,7 @@ app.get('/announcements',announcementCtrl.announcement);
 //api
 app.get('/api/listArticle',announcementCtrl.listArticle);
 app.post('/api/postArticle',announcementCtrl.postArticle);
-app.delete('api/deleteArticle/:id',announcementCtrl.deleteArticle);
-
+app.delete('/api/del/:_id',announcementCtrl.deleteArticle);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
