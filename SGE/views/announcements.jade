@@ -3,20 +3,19 @@ extends layout
 block content
     section#blog.container
       .center
-        h2 Announcements
+        h2 Blogs
         p.lead Pellentesque habitant morbi tristique senectus et netus et malesuada
       .blog
         .row
           .col-md-8
             .blog-item
-              img.img-responsive.img-blog(src="images/blog/blog1.jpg", width="100%", alt="")
               .row
                 .col-xs-12.col-sm-2.text-center
                   .entry-meta
                     span#publish_date 07  NOV
                     span
                       i.fa.fa-user
-                      a(href="#")  John Doe
+                      a(href="#") John Doe
                     span
                       i.fa.fa-comment
                       a(href="blog-item.html#comments") 2 Comments
@@ -24,59 +23,42 @@ block content
                       i.fa.fa-heart
                       a(href="#") 56 Likes
                 .col-xs-12.col-sm-10.blog-content
-                  h2 Consequat bibendum quam
-                  p
+                  h2
+                    a(href="blog-item.html") Consequat bibendum quam liquam viverra
+                  h3
                     | Curabitur quis libero leo, pharetra mattis eros. Praesent consequat libero eget dolor convallis vel rhoncus magna scelerisque. Donec nisl ante, elementum eget posuere a, consectetur a metus. Proin a adipiscing sapien. Suspendisse vehicula porta lectus vel semper. Nullam sapien elit, lacinia eu tristique non.posuere at mi. Morbi at turpis id urna ullamcorper ullamcorper.
-                  p
-                    | Curabitur quis libero leo, pharetra mattis eros. Praesent consequat libero eget dolor convallis vel rhoncus magna scelerisque. Donec nisl ante, elementum eget posuere a, consectetur a metus. Proin a adipiscing sapien. Suspendisse vehicula porta lectus vel semper.
-                  .post-tags
-                    strong Tag:
-                    a(href="#") Cool
-                    | /
-                    a(href="#") Creative
-                    | /
-                    a(href="#") Dubttstep
+                  a.btn.btn-primary.readmore(href="blog-item.html")
+                    | Read More
+                    i.fa.fa-angle-right
             // /.blog-item
+            ul.pagination.pagination-lg
+              li
+                a(href="#")
+                  i.fa.fa-long-arrow-left
+                  | Previous Page
+              li.active
+                a(href="#") 1
+              li
+                a(href="#") 2
+              li
+                a(href="#") 3
+              li
+                a(href="#") 4
+              li
+                a(href="#") 5
+              li
+                a(href="#")
+                  | Next Page
+                  i.fa.fa-long-arrow-right
+            // /.pagination
           // /.col-md-8
-
           aside.col-md-4
             .widget.search
               form(role="form")
                 input.form-control.search_box(type="text", autocomplete="off", placeholder="Search Here")
             // /.search
-
-            .widget.archieve
-              h3 Archieve
-              .row
-                .col-sm-12
-                  ul.blog_archieve
-                    li
-                      a(href="#")
-                        i.fa.fa-angle-double-right
-                        | December 2013
-                        span.pull-right (97)
-                    li
-                      a(href="#")
-                        i.fa.fa-angle-double-right
-                        | November 2013
-                        span.pull-right (32)
-                    li
-                      a(href="#")
-                        i.fa.fa-angle-double-right
-                        | October 2013
-                        span.pull-right (19)
-                    li
-                      a(href="#")
-                        i.fa.fa-angle-double-right
-                        | September 2013
-                        span.pull-right (08)
-            // /.archieve
-
         // /.row
-      // /.blog
     // /#blog
-
-
 
     script(src="js/jquery.js")
     script(src="js/bootstrap.min.js")
@@ -84,16 +66,3 @@ block content
     script(src="js/jquery.isotope.min.js")
     script(src="js/main.js")
     script(src="js/wow.min.js")
-
-
-
-  script.
-    $(function(){
-            //分页功能
-      var options = {
-      currentPage:2,
-      totalPages:5,
-      numberOfPages:5
-      }
-      $('#page1').bootstrapPaginator(options);
-    });
