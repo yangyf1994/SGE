@@ -1,0 +1,62 @@
+extends layout
+block content
+
+ section.contact-info
+  .center
+    h2 How to Reach Us?
+  .gmap-area
+    .container
+      .row
+        .col-sm-5.text-center
+          .gmap
+            iframe(frameborder="0", scrolling="no", marginheight="0", marginwidth="0", src="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=JoomShaper,+Dhaka,+Dhaka+Division,+Bangladesh&aq=0&oq=joomshaper&sll=37.0625,-95.677068&sspn=42.766543,80.332031&ie=UTF8&hq=JoomShaper,&hnear=Dhaka,+Dhaka+Division,+Bangladesh&ll=23.73854,90.385504&spn=0.001515,0.002452&t=m&z=14&iwloc=A&cid=1073661719450182870&output=embed")
+        .col-sm-7.map-content
+          ul.row
+            li.col-sm-12
+              address
+                h5 Head Office
+                p
+                  | 1537 Flint Street
+                  br
+                  | Tumon, MP 96911
+                p
+                  | Phone:670-898-2847
+                  br
+                  | Email Address:info@domain.com
+
+ // /gmap_area
+ section#contact-page
+  .container
+    .center
+      h2 Drop Your Message
+    .row.contact-wrap
+      .status.alert.alert-success(style="display: none")
+      form#main-contact-form.contact-form(name="contact-form", method="post", action="/api/contact-message")
+        .col-sm-5.col-sm-offset-1
+          .form-group
+            label Name *
+            input.form-control(type="text", name="name", required="required")
+          .form-group
+            label Email *
+            input.form-control(type="email", name="email", required="required")
+          .form-group
+            label Phone
+            input.form-control(type="number",name="phone")
+          .form-group
+            label Company Name
+            label#headsup &nbsp if a company representative*
+            input.form-control(type="text",name="company")
+        .col-sm-5
+          .form-group
+            label Subject *
+            input.form-control(type="text", name="subject", required="required")
+          .form-group
+            label Message *
+            textarea#message.form-control(name="message", required="required", rows="8")
+          .form-group
+            button.btn.btn-primary.btn-lg(type="submit", name="submit", required="required") Submit Message
+    // /.row
+  // /.container
+// /#contact-page
+
+
