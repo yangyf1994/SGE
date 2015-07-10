@@ -1,3 +1,6 @@
+//TODO:
+//var mailer = require('../models/mailer');
+
 exports.contact = function (req,res,next) {
 	res.render('contact');
 };
@@ -5,7 +8,6 @@ exports.contact = function (req,res,next) {
 
 exports.receiveMessage = function (req,res,next) {
 
-	console.log(req.body);
-	console.log(req.body.name);
-	res.send({message:'success'});
+		res.send({message:'Your message has been successfully sent'});
+
 };
